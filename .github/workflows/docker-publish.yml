@@ -1,10 +1,14 @@
-name: Weekly Docker Build
+name: Docker Build and Push
 
 on:
   schedule:
     # Every Sunday at 06:27 Europe/Oslo time
     - cron: '27 6 * * 0'
       timezone: 'Europe/Oslo'
+
+  push:
+    branches:
+      - main
 
 env:
   IMAGE_NAME: usmanawan80092/docker-build
@@ -25,7 +29,6 @@ jobs:
         with:
           username: usmanawan80092
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          scope: 'usmanawan80092/docker-build@push'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
@@ -35,6 +38,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.IMAGE_NAME }}:latest
+          tags: usmanawan80092/docker-build:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
