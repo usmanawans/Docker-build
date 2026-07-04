@@ -2,7 +2,7 @@ name: ci
 
 on:
   schedule:
-    # Every Sunday at 06:27 Europe/Oslo time
+    # Every day at 06:27 Europe/Oslo time
     - cron: '27 6 * * *'
       timezone: 'Europe/Oslo'
 
