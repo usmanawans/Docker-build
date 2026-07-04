@@ -1,9 +1,14 @@
 name: ci
 
 on:
+  schedule:
+    # Every Sunday at 06:27 Europe/Oslo time
+    - cron: '27 6 * * *'
+      timezone: 'Europe/Oslo'
+
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
   docker:
